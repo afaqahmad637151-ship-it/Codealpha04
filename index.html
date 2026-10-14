@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a10">
+
+  <title>NOIR — Music Player</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="brand-icon">♫</span>
+        NOIR<span class="brand-dot">.</span>
+      </a>
+
+      <div class="sidebar-label">MENU</div>
+
+      <nav class="side-nav">
+        <a href="#home" class="nav-item active">
+          <span>⌂</span> Home
+        </a>
+        <a href="#playlist" class="nav-item">
+          <span>☷</span> Your Playlist
+        </a>
+      </nav>
+
+      <div class="sidebar-label playlist-label">YOUR LIBRARY</div>
+
+      <div class="library-info">
+        <div class="library-icon">♫</div>
+        <div>
+          <strong>My Collection</strong>
+          <p id="libraryCount">3 tracks</p>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        Your music, your mood.
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="home">
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL SOUNDTRACK</p>
+          <h1>Good music. <span>Good mood.</span></h1>
+        </div>
+
+        <div class="topbar-badge">
+          <span class="live-dot"></span>
+          Now Playing
+        </div>
+      </header>
+
+      <section class="player-layout">
+
+        <!-- Main Player -->
+        <div class="player-card">
+
+          <div class="player-heading">
+            <span>NOW PLAYING</span>
+            <span class="equalizer">▮ ▮ ▮</span>
+          </div>
+
+          <div class="album-art" id="albumArt">
+            <div class="art-glow"></div>
+            <div class="art-circle circle-one"></div>
+            <div class="art-circle circle-two"></div>
+            <div class="art-record">
+              <div class="record-center">♫</div>
+            </div>
+            <span class="art-label">NOIR SESSIONS</span>
+          </div>
+
+          <div class="song-details">
+            <div class="song-text">
+              <p class="eyebrow">NOW PLAYING</p>
+              <h2 id="songTitle">Midnight Dreams</h2>
+              <p id="songArtist">Afaq's Playlist</p>
+            </div>
+
+            <button class="favorite-btn" id="favoriteBtn"
+              aria-label="Add song to favorites"
+              aria-pressed="false">♡</button>
+          </div>
+
+          <!-- Progress -->
+          <div class="progress-section">
+            <input type="range" id="progressBar"
+              class="range-input" min="0" max="100"
+              value="0" step="0.1"
+              aria-label="Song progress">
+
+            <div class="time-row">
+              <span id="currentTime">0:00</span>
+              <span id="duration">0:00</span>
+            </div>
+          </div>
+
+          <!-- Playback Controls -->
+          <div class="controls">
+            <button class="control-btn shuffle-btn"
+              id="shuffleBtn" aria-label="Toggle shuffle"
+              aria-pressed="false">⤨</button>
+
+            <button class="control-btn"
+              id="prevBtn" aria-label="Previous song">|◀</button>
+
+            <button class="play-btn" id="playBtn"
+              aria-label="Play music">▶</button>
+
+            <button class="control-btn"
+              id="nextBtn" aria-label="Next song">▶|</button>
+
+            <button class="control-btn repeat-btn"
+              id="repeatBtn" aria-label="Toggle repeat"
+              aria-pressed="false">↻</button>
+          </div>
+
+          <!-- Volume -->
+          <div class="volume-section">
+            <span class="volume-icon" id="volumeIcon">◖</span>
+            <input type="range" id="volumeBar"
+              class="range-input volume-range"
+              min="0" max="100" value="70"
+              aria-label="Volume">
+            <span id="volumeValue">70%</span>
+          </div>
+
+          <audio id="audioPlayer" preload="metadata"></audio>
+        </div>
+
+        <!-- Playlist -->
+        <section class="playlist-card" id="playlist">
+
+          <div class="playlist-header">
+            <div>
+              <p class="eyebrow">YOUR COLLECTION</p>
+              <h2>Playlist <span id="trackCount">(3)</span></h2>
+            </div>
+            <span class="playlist-symbol">♫</span>
+          </div>
+
+          <div class="playlist-list" id="playlistList">
+
+            <button class="track-item selected"
+              data-index="0" type="button">
+              <span class="track-number">01</span>
+              <span class="track-art art-purple">♫</span>
+              <span class="track-info">
+                <strong>Midnight Dreams</strong>
+                <small>Afaq's Playlist</small>
+              </span>
+              <span class="track-duration">--:--</span>
+            </button>
+
+            <button class="track-item"
+              data-index="1" type="button">
+              <span class="track-number">02</span>
+              <span class="track-art art-pink">♫</span>
+              <span class="track-info">
+                <strong>Neon Skies</strong>
+                <small>Afaq's Playlist</small>
+              </span>
+              <span class="track-duration">--:--</span>
+            </button>
+
+            <button class="track-item"
+              data-index="2" type="button">
+              <span class="track-number">03</span>
+              <span class="track-art art-blue">♫</span>
+              <span class="track-info">
+                <strong>Lost in Sound</strong>
+                <small>Afaq's Playlist</small>
+              </span>
+              <span class="track-duration">--:--</span>
+            </button>
+
+          </div>
+
+          <div class="playlist-footer">
+            <span class="status-dot"></span>
+            <span id="playlistStatus">Ready to play</span>
+          </div>
+        </section>
+
+      </section>
+
+      <footer class="footer">
+        <p>Made with <span>♥</span> and JavaScript</p>
+        <p>© <span id="year"></span> NOIR Music</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
