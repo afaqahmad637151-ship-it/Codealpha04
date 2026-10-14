@@ -17,8 +17,6 @@
 <body>
 
   <div class="app-shell">
-
-    <!-- Sidebar -->
     <aside class="sidebar">
       <a class="brand" href="#">
         <span class="brand-icon">♫</span>
@@ -51,8 +49,6 @@
         Your music, your mood.
       </div>
     </aside>
-
-    <!-- Main Content -->
     <main class="main-content" id="home">
 
       <header class="topbar">
@@ -68,8 +64,6 @@
       </header>
 
       <section class="player-layout">
-
-        <!-- Main Player -->
         <div class="player-card">
 
           <div class="player-heading">
@@ -98,8 +92,6 @@
               aria-label="Add song to favorites"
               aria-pressed="false">♡</button>
           </div>
-
-          <!-- Progress -->
           <div class="progress-section">
             <input type="range" id="progressBar"
               class="range-input" min="0" max="100"
@@ -111,8 +103,6 @@
               <span id="duration">0:00</span>
             </div>
           </div>
-
-          <!-- Playback Controls -->
           <div class="controls">
             <button class="control-btn shuffle-btn"
               id="shuffleBtn" aria-label="Toggle shuffle"
@@ -131,8 +121,6 @@
               id="repeatBtn" aria-label="Toggle repeat"
               aria-pressed="false">↻</button>
           </div>
-
-          <!-- Volume -->
           <div class="volume-section">
             <span class="volume-icon" id="volumeIcon">◖</span>
             <input type="range" id="volumeBar"
@@ -144,8 +132,6 @@
 
           <audio id="audioPlayer" preload="metadata"></audio>
         </div>
-
-        <!-- Playlist -->
         <section class="playlist-card" id="playlist">
 
           <div class="playlist-header">

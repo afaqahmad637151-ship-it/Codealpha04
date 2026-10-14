@@ -26,23 +26,27 @@ const trackCount = document.getElementById("trackCount");
 const libraryCount = document.getElementById("libraryCount");
 const year = document.getElementById("year");
 
-// Replace these sample tracks with your own audio files.
 const songs = [
   {
     title: "Midnight Dreams",
     artist: "Afaq's Playlist",
-    src: "songs/song1.mp3"
+    src: "Song/song1.mp3"
   },
   {
     title: "Neon Skies",
-    artist: "Afaq's Playlist",
-    src: "songs/song2.mp3"
+    artist: "Song Playlist",
+    src: "Song/Song2.mp3"
   },
   {
     title: "Lost in Sound",
-    artist: "Afaq's Playlist",
-    src: "songs/song3.mp3"
-  }
+    artist: "Song Playlist",
+    src: "Song/Song3.mp3"
+  },
+  {
+    title: "Lost in Sound",
+    artist: "Song Playlist",
+    src: "Song/Song4.mp3"
+  },
 ];
 
 let currentIndex = 0;
@@ -56,8 +60,6 @@ trackCount.textContent = `(${songs.length})`;
 libraryCount.textContent = `${songs.length} tracks`;
 
 audio.volume = Number(volumeBar.value) / 100;
-
-// Format seconds as minutes:seconds.
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) {
     return "0:00";
@@ -69,7 +71,6 @@ function formatTime(seconds) {
   return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
 }
 
-// Load a song and update the player interface.
 function loadSong(index, autoplay = false) {
   currentIndex = (index + songs.length) % songs.length;
 
@@ -98,8 +99,6 @@ function loadSong(index, autoplay = false) {
     updatePlayButton(false);
   }
 }
-
-// Play the current song.
 async function playSong() {
   try {
     await audio.play();
@@ -110,13 +109,9 @@ async function playSong() {
     console.error("Audio playback failed:", error);
   }
 }
-
-// Pause the current song.
 function pauseSong() {
   audio.pause();
 }
-
-// Update the play button and album animation.
 function updatePlayButton(isPlaying) {
   playBtn.textContent = isPlaying ? "Ⅱ" : "▶";
 
@@ -127,8 +122,6 @@ function updatePlayButton(isPlaying) {
 
   albumArt.classList.toggle("playing", isPlaying);
 }
-
-// Play/pause button.
 playBtn.addEventListener("click", () => {
   if (audio.paused) {
     playSong();
@@ -136,8 +129,6 @@ playBtn.addEventListener("click", () => {
     pauseSong();
   }
 });
-
-// Previous song.
 prevBtn.addEventListener("click", () => {
   if (audio.currentTime > 3) {
     audio.currentTime = 0;
@@ -146,8 +137,6 @@ prevBtn.addEventListener("click", () => {
 
   loadSong(currentIndex - 1, true);
 });
-
-// Next song.
 nextBtn.addEventListener("click", () => {
   playNextSong();
 });
@@ -172,7 +161,6 @@ function playNextSong() {
   }
 
   if (currentIndex === songs.length - 1 && repeatMode !== 2) {
-    // End of playlist: stop when repeat-all is disabled.
     audio.pause();
     audio.currentTime = 0;
     updatePlayButton(false);
@@ -182,8 +170,6 @@ function playNextSong() {
 
   loadSong(currentIndex + 1, true);
 }
-
-// Update the play state when audio starts or pauses.
 audio.addEventListener("play", () => {
   updatePlayButton(true);
   playlistStatus.textContent = `Playing: ${songs[currentIndex].title}`;
@@ -199,8 +185,6 @@ audio.addEventListener("error", () => {
       "Audio unavailable. Check your songs folder.";
   }
 });
-
-// Update duration after audio metadata loads.
 audio.addEventListener("loadedmetadata", () => {
   durationDisplay.textContent = formatTime(audio.duration);
 
@@ -212,8 +196,6 @@ audio.addEventListener("loadedmetadata", () => {
     durationLabel.textContent = formatTime(audio.duration);
   }
 });
-
-// Update progress while playing.
 audio.addEventListener("timeupdate", () => {
   if (isSeeking) return;
 
@@ -223,8 +205,6 @@ audio.addEventListener("timeupdate", () => {
     updateProgressBackground();
   }
 });
-
-// Seek through the song.
 progressBar.addEventListener("input", () => {
   isSeeking = true;
 
@@ -250,8 +230,6 @@ function updateProgressBackground() {
   progressBar.style.background =
     `linear-gradient(to right, #a78bfa ${value}%, #363140 ${value}%)`;
 }
-
-// Volume control.
 volumeBar.addEventListener("input", () => {
   audio.volume = Number(volumeBar.value) / 100;
 
@@ -263,8 +241,6 @@ volumeBar.addEventListener("input", () => {
   volumeBar.style.background =
     `linear-gradient(to right, #a78bfa ${volumeBar.value}%, #363140 ${volumeBar.value}%)`;
 });
-
-// Shuffle toggle.
 shuffleBtn.addEventListener("click", () => {
   isShuffle = !isShuffle;
 
@@ -275,8 +251,6 @@ shuffleBtn.addEventListener("click", () => {
     ? "Shuffle enabled"
     : "Shuffle disabled";
 });
-
-// Repeat modes: off -> repeat one -> repeat all -> off.
 repeatBtn.addEventListener("click", () => {
   repeatMode = (repeatMode + 1) % 3;
 
@@ -291,8 +265,6 @@ repeatBtn.addEventListener("click", () => {
     "Repeating playlist"
   ][repeatMode];
 });
-
-// Automatically play the next track when a song ends.
 audio.addEventListener("ended", () => {
   if (repeatMode === 1) {
     audio.currentTime = 0;
@@ -301,8 +273,6 @@ audio.addEventListener("ended", () => {
     playNextSong();
   }
 });
-
-// Favorite toggle.
 favoriteBtn.addEventListener("click", () => {
   if (favorites.has(currentIndex)) {
     favorites.delete(currentIndex);
@@ -325,8 +295,6 @@ function updateFavoriteButton() {
     isFavorite ? "Remove from favorites" : "Add song to favorites"
   );
 }
-
-// Playlist selection.
 function updatePlaylist() {
   playlistList.querySelectorAll(".track-item").forEach((item, index) => {
     const isSelected = index === currentIndex;
@@ -352,8 +320,6 @@ playlistList.addEventListener("click", (event) => {
 
   loadSong(index, true);
 });
-
-// Initialize the first song.
 loadSong(0);
 
 volumeBar.dispatchEvent(new Event("input"));

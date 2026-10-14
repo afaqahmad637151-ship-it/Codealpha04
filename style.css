@@ -59,7 +59,6 @@ a {
   margin: auto;
 }
 
-/* SIDEBAR */
 .sidebar {
   position: sticky;
   top: 0;
@@ -186,8 +185,6 @@ a {
   background: #4ade80;
   box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
 }
-
-/* MAIN CONTENT */
 .main-content {
   min-width: 0;
   padding: 40px clamp(20px, 4vw, 55px) 20px;
@@ -235,8 +232,6 @@ a {
   width: 7px;
   height: 7px;
 }
-
-/* PLAYER LAYOUT */
 .player-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
@@ -269,8 +264,6 @@ a {
   color: var(--pink);
   letter-spacing: 2px;
 }
-
-/* ALBUM ART */
 .album-art {
   position: relative;
   display: grid;
@@ -360,7 +353,6 @@ a {
   to { transform: rotate(360deg); }
 }
 
-/* SONG DETAILS */
 .song-details {
   display: flex;
   align-items: center;
@@ -409,7 +401,6 @@ a {
   border-color: var(--pink);
 }
 
-/* PROGRESS AND VOLUME */
 .progress-section {
   margin-bottom: 19px;
 }
@@ -453,8 +444,6 @@ a {
   font-size: 0.7rem;
   font-variant-numeric: tabular-nums;
 }
-
-/* CONTROLS */
 .controls {
   display: flex;
   align-items: center;
@@ -528,7 +517,6 @@ a {
   text-align: right;
 }
 
-/* PLAYLIST */
 .playlist-card {
   display: flex;
   flex-direction: column;
@@ -655,8 +643,6 @@ a {
   color: var(--muted);
   font-size: 0.74rem;
 }
-
-/* FOOTER */
 .footer {
   display: flex;
   justify-content: space-between;
@@ -671,8 +657,6 @@ a {
 .footer span {
   color: var(--pink);
 }
-
-/* TABLET */
 @media (max-width: 1050px) {
   .app-shell {
     grid-template-columns: 205px minmax(0, 1fr);
@@ -704,8 +688,6 @@ a {
     margin-top: 25px;
   }
 }
-
-/* MOBILE */
 @media (max-width: 620px) {
   .app-shell {
     display: block;
